@@ -1,0 +1,193 @@
+.jd_big{
+    width: 100%;
+    max-width: 640px;
+    min-width: 320px;
+    height: 1000px;
+    margin: 0 auto;
+    background-color: #f2f1f1;
+}
+
+.jd_search{
+    width: 100%;
+    max-width: 640px;
+    height: 40px;
+    /* background-color: #e92322; */
+    position: fixed;
+    z-index: 999;
+}
+
+.jd_logo{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    height: 30px;
+    width: 56px;
+    background: url(../images/jd-sprites.png) 0px -105px / 200px 200px;
+}
+
+.jd_login{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 65px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+.jd_searchBox{
+    width: 100%;
+    height: 40px;
+    padding-left:76px;
+    padding-right:65px;
+}
+
+.jd_searchBox input{
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 15px;
+    padding-left: 30px;
+}
+
+.jd_searchBox::before {
+    content: "";
+    width: 27px;
+    height: 23px;
+    position: absolute;
+    background: url("../images/jd-sprites.png");
+    background-size: 200px 200px;
+    background-position: -56px -108px;
+    left: 80px;
+    top: 9px;
+}
+
+
+.jd_banner{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.jd_bannerImg{
+    width: 800%;
+}
+
+.jd_bannerImg li{
+    width: 12.5%;
+    float: left;
+}
+
+.jd_bannerImg a,
+.jd_bannerImg img {
+    width: 100%;
+    display: block;
+}
+
+.active{
+    background-color: #fff;
+    transform: scale(1.2);
+}
+
+.jd_page{
+    height: 10px;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.jd_page li{
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    float: left;
+    margin:0 5px;
+}
+
+
+
+.jd_nav {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #fff;
+}
+
+.jd_nav li {
+    width: 25%;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.jd_nav li img {
+    width: 39px;
+}
+
+.jd_nav li p {
+    line-height: 25px;
+}
+
+
+
+
+
+/*产品块样式*/
+
+.jd_product {
+    width: 100%;
+}
+
+.jd_super{
+    width: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.jd_Stitle{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+
+.jd_Stitle>h3 {
+    padding-left: 30px;
+    position: relative;
+}
+
+.jd_Stitle>h3::before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background-color: #e92322;
+    left: 20px;
+    top: 9px;
+}
+
+/*产品块图片超链接*/
+.a_50 {
+    width: 50%;
+    display: block;
+}
+
+.a_50>img {
+    width: 100%;
+    display: block;
+}
+
+.b_left {
+    border-left: 1px solid #ccc;
+}
+
+.b_bottom {
+    border-bottom: 1px solid #ccc;
+}
+
+.b_right {
+    border-right: 1px solid #ccc;
+}

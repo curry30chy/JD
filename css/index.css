@@ -71,11 +71,10 @@
 }
 
 .jd_bannerImg{
-    width: 800%;
+    position: relative;
 }
 
 .jd_bannerImg li{
-    width: 12.5%;
     float: left;
 }
 
@@ -131,6 +130,62 @@
 }
 
 
+
+
+/*设置一个样式标记：秒杀块样式开始*/
+
+.jd_sk {}
+
+.jd_sk>.jd_pTip {
+    border-bottom: none;
+}
+
+.jd_sk_icon {
+    width: 16px;
+    height: 20px;
+    background: url("../tmp-images/seckill-icon.png");
+    background-size: 16px 20px;
+    margin-top: 3px;
+}
+
+.jd_sk_text {
+    color: #e92322;
+}
+
+.jd_sk_time>span {
+    width: 13px;
+    height: 18px;
+    display: inline-block;
+    line-height: 18px;
+    color: #fff;
+    background-color: #000;
+    text-align: center;
+}
+
+.jd_sk_time>span:nth-last-of-type(3n) {
+    color: #000;
+    background-color: transparent;
+    width: 8px;
+}
+
+.jd_sk .jd_pContent {
+    padding: 20px;
+}
+
+.jd_sk .jd_pContent>ul {
+    width: 100%;
+}
+
+.jd_sk .jd_pContent>ul>li {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+}
+
+.jd_sk .jd_pContent>ul>li img {
+    width: 60%;
+    display: inline-block;
+}
 
 
 

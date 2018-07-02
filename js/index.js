@@ -70,6 +70,7 @@ function BANNERIMG() {
 
     var index = 1;
     var TIMEID;
+    BANNERIMG();
     function BANNERIMG() {
         TIMEID = setInterval(function () {
             index++;
@@ -85,7 +86,7 @@ function BANNERIMG() {
             }, 500);
         }, 2000);
     };
-    BANNERIMG();
+    
 
     var stsrtX, moveX, distanceX;
     var isEnd = true;

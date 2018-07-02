@@ -140,7 +140,7 @@ function BANNERIMG() {
             BANNERIMG();
         }, 100);
     })
-}
+};
 
 function setIndicator(index) {
     var indicators = document.querySelectorAll('.jd_page>li');

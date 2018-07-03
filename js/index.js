@@ -21,7 +21,7 @@ function TOP() {
 // 秒杀倒计时
 function TIME() { 
     var spans = document.querySelectorAll('.jd_sk_time>span');
-    var time = 10;
+    var time = 3700;
     var timeId = setInterval(function () {
         time--;
         if (time < 0) {

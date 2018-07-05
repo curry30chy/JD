@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -9,7 +10,9 @@
     <link rel="stylesheet" href="./css/index.css">
     <!-- <script src="./js/index.js"></script> -->
     <script src="./zepto-master/dist/zepto.min.js"></script>
+    <script src="./zepto-master/src/touch.js"></script>
 </head>
+
 <body>
     <div class="jd_big">
         <div class="jd_search">
@@ -204,83 +207,100 @@
             </div>
         </div>
     </div>
-<script>
-$(function () {
-    BANNER();
-    TOP();
-    TIME();
-});
+    <script>
+        $(function () {
+            var bb;
+            BANNER();
+            TOP();
+            TIME();
 
-function TOP() {
-    window.onscroll = function () {
-        var offsetTop = document.documentElement.scrollTop || document.body.scrollTop; 
-        var height = $(".jd_banner").height();
-        if (offsetTop < height) {
-            var opacity = offsetTop / height;
-            $(".jd_search").css('backgroundColor',"rgba(233,35,34," + opacity + ")");
+            console.log($('.jd_bannerImg'),88999);
+            $('.jd_bannerImg').on("swipeLeft", function () {
+                console.log(111);
+
+                // clearInterval(timerId);
+                // index++;
+                // ANIMATION();
+            });
+
+            $('.jd_bannerImg').on("swipeRight", function () {
+                console.log(222);
+
+                // clearInterval(timerId);
+                // index--;
+                // ANIMATION();
+            });
+        });
+
+        function TOP() {
+            window.onscroll = function () {
+                var offsetTop = document.documentElement.scrollTop || document.body.scrollTop;
+                var height = $(".jd_banner").height();
+                if (offsetTop < height) {
+                    var opacity = offsetTop / height;
+                    $(".jd_search").css('backgroundColor', "rgba(233,35,34," + opacity + ")");
+                };
+            };
         };
-    };
-};
 
-function TIME() { 
-    var spans = document.querySelectorAll('.jd_sk_time>span');
-    var time = 3700;
-    var timeId = setInterval(function () {
-        time--;
-        if (time < 0) {
-            clearInterval(timeId);
-            return;
+        function TIME() {
+            var spans = document.querySelectorAll('.jd_sk_time>span');
+            var time = 3700;
+            var timeId = setInterval(function () {
+                time--;
+                if (time < 0) {
+                    clearInterval(timeId);
+                    return;
+                };
+                var hour = Math.floor(time / 3600);
+                var minent = Math.floor(time % 3600 / 60);
+                var sencend = Math.floor(time % 60);
+
+                spans[0].innerHTML = Math.floor(hour / 10);
+                spans[1].innerHTML = Math.floor(hour % 10);
+                spans[3].innerHTML = Math.floor(minent / 10);
+                spans[4].innerHTML = Math.floor(minent % 10);
+                spans[6].innerHTML = Math.floor(sencend / 10);
+                spans[7].innerHTML = Math.floor(sencend % 10);
+            }, 1000)
         };
-        var hour = Math.floor(time / 3600);
-        var minent = Math.floor(time % 3600 / 60);
-        var sencend = Math.floor(time % 60);
 
-        spans[0].innerHTML = Math.floor(hour / 10);
-        spans[1].innerHTML = Math.floor(hour % 10);
-        spans[3].innerHTML = Math.floor(minent / 10);
-        spans[4].innerHTML = Math.floor(minent % 10);
-        spans[6].innerHTML = Math.floor(sencend / 10);
-        spans[7].innerHTML = Math.floor(sencend % 10);    
-    },1000)
-};
+        function BANNER() {
+            $(".jd_bannerImg>li:last-child").clone().insertBefore($(".jd_bannerImg>li:first-child"));
+            $('.jd_bannerImg').append($(".jd_bannerImg>li:eq(1)").clone());
+            var lis = $(".jd_bannerImg").find('li');
+            $('.jd_bannerImg').width(lis.length * $(".jd_banner").width());
+            lis.each(function (index, value) {
+                $(value).width($(".jd_banner").width());
+            });
+            $('.jd_bannerImg').css("left", -$(".jd_banner").width());
 
-function BANNER() {
-    $(".jd_bannerImg>li:last-child").clone().insertBefore($(".jd_bannerImg>li:first-child"));
-    $('.jd_bannerImg').append($(".jd_bannerImg>li:eq(1)").clone());
-    var lis = $(".jd_bannerImg").find('li');
-    $('.jd_bannerImg').width(lis.length * $(".jd_banner").width());
-    lis.each(function (index, value) {
-        $(value).width($(".jd_banner").width());
-    });
-    $('.jd_bannerImg').css("left",-$(".jd_banner").width());
+            var index = 1;
+            bb = setInterval(function () {
+                index++;
+                ANIMATION(index,lis);
+            }, 2000);
+        };
 
-    var index = 1;
-    var timerId=setInterval(function(){
-        index++;
-        ANIMATION();
-    },2000);
-
-
-function ANIMATION() {
-    $('.jd_bannerImg').animate(
-        {'left': -index*$(".jd_banner").width()},
-        200,
-        "ease-in-out",
-        function () { 
-            if(index==lis.length-1){
-                index=1;
-                $('.jd_bannerImg').css("left",-index* $(".jd_banner").width());
-            } else if(index==0){
-                index=lis.length-2;
-                $('.jd_bannerImg').css("left",-index* $(".jd_banner").width());
-            }
-            $('.jd_page>li').removeClass("active").eq(index-1).addClass("active");
+        function ANIMATION(index,lis) {
+            $('.jd_bannerImg').animate({
+                    'left': -index * $(".jd_banner").width()
+                },
+                200,
+                "ease-in-out",
+                function () {
+                    if (index == lis.length - 1) {
+                        index = 1;
+                        $('.jd_bannerImg').css("left", -index * $(".jd_banner").width());
+                    } else if (index == 0) {
+                        index = lis.length - 2;
+                        $('.jd_bannerImg').css("left", -index * $(".jd_banner").width());
+                    }
+                    $('.jd_page>li').removeClass("active").eq(index - 1).addClass("active");
+                }
+            );
         }
-    )
-}
-};
-
-
-</script>
+    </script>
 </body>
+
 </html>

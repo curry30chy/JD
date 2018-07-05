@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/classify.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="ct_layout">
+        <div class="ct_header">
+            <a href="javascript:;" class="ct_back"></a>
+            <form action="" class="ct_search">
+                <input type="text" placeholder="请输入商品名称">
+            </form>
+            <a href="javascript:;" class="ct_menu"></a>
+        </div>
+        <div class="ct_content">
+            <div class="ct_left">
+                <ul>
+                    <li class="">
+                        <a href="javascript:;">热门推荐</a>
+                    </li>
+                    <li class="active">
+                        <a href="javascript:;">潮流女装</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">品牌男装</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">内衣配饰</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家用电器</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">电脑办公</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">手机数码</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">母婴频道</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">图书</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家居家纺</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">居家生活</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家具建材</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">热门推荐</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">潮流女装</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">品牌男装</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">内衣配饰</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家用电器</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">电脑办公</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">手机数码</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">母婴频道</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">图书</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家居家纺</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">居家生活</a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:;">家具建材</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="ct_right"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var DD = {
+        onclick:function (Dom,callback) {
+            if (!Dom && typeof Dom != "object") {
+                return;
+            };
+            var startTime,startX,startY;
+            Dom.addEventListener("touchstart", function (e) {
+                if (e.targetTouches.length > 1) {
+                    return;
+                };
+                startTime = Date.now();
+                startX = e.targetTouches[0].clientX;
+                startY = e.targetTouches[0].clientY;
+            });
+
+            Dom.addEventListener("touchend", function (e) {
+                if (e.changedTouches.length > 1) {
+                    return;
+                };
+
+                if (Math.abs(Date.now() - startTime) > 150) {
+                    return;
+                };
+                
+                var endX = e.changedTouches[0].clientX;
+                var endY = e.changedTouches[0].clientY;
+
+                if (Math.abs(endX - startX) < 6 && Math.abs(endY - startY) < 6) {
+                    // console.log('top事件触发成功');
+                    callback && callback(e);
+                };
+            });
+        }
+    }
+
+
+</script>
+<script>
+    window.onload = function () {
+        var ct_left=document.querySelector(".ct_left");
+        var leftHeight=ct_left.offsetHeight;
+        var ulBox=ct_left.querySelector("ul:first-of-type");
+        var ulBoxHeight=ulBox.offsetHeight;
+        var lis=ulBox.querySelectorAll("li");
+
+        var cazhi = 400;
+        /*设置静止状态下的最大top值*/
+        var maxTop=0;
+        /*设置静止状态下的最小的top值*/
+        var minTop=leftHeight-ulBoxHeight;
+        /*设置滑动状态下的最大的top值*/
+        var maxBounceTop=maxTop+cazhi;
+        /*设置滑动状态下的最小top值*/
+        var minBounceTop=minTop-cazhi;
+
+        /*实现滑动*/
+        var startY=0;
+        var moveY=0;
+        var distanceY=0;
+        /*记录当前元素滑动到的距离*/
+        var currentY=0;
+
+        ulBox.addEventListener('touchstart', function (e) {
+            startY= e.targetTouches[0].clientY;
+        });
+
+        ulBox.addEventListener("touchmove", function (e) {
+            moveY= e.targetTouches[0].clientY;
+            distanceY=moveY-startY;
+            if (currentY+distanceY > maxBounceTop || currentY+distanceY < minBounceTop) {
+                return false;
+            };
+            ulBox.style.transition="none";
+            ulBox.style.top=(currentY+distanceY)+"px";
+        });
+
+        ulBox.addEventListener('touchend', function () {
+            if (currentY+distanceY < minTop) {
+                currentY = minTop;
+                ulBox.style.transition="top 0.5s";
+                ulBox.style.top=minTop+"px";
+            } else if (currentY+distanceY > maxTop) {
+                currentY = maxTop;
+                ulBox.style.transition="top 0.5s";
+                ulBox.style.top=maxTop+"px";
+            } else {
+                currentY+=distanceY;
+            };
+        });
+
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].index = i;
+            
+        }
+
+        DD.onclick(ulBox,function (e) {
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].classList.remove('active');
+            };
+
+            e.target.parentNode.classList.add("active");
+            var liHeight = e.target.offsetHeight;
+
+            var index = e.target.parentNode.index;
+            if (-index * liHeight < minTop) {
+                ulBox.style.transition = "top 0.5s";
+                ulBox.style.top = minTop + "px";
+                currentY = minTop;
+            } else {
+                ulBox.style.transition = "top 0.5s";
+                ulBox.style.top = -index*liHeight + "px";
+                currentY = -index * liHeight;
+            }
+        })
+    }
+
+
+
+</script>

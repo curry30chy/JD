@@ -88,7 +88,7 @@ function BANNERIMG() {
     };
     
 
-    var stsrtX, moveX, distanceX;
+    var startX, moveX, distanceX;
     var isEnd = true;
     bannerImg.addEventListener('touchstart', function (e) {
         clearInterval(TIMEID);
@@ -135,7 +135,12 @@ function BANNERIMG() {
         };
         setIndicator(index);
 
-        setTimeout(function () {
+        // setTimeout(function () {
+        //     isEnd = true;
+        //     clearInterval(TIMEID);
+        //     BANNERIMG();
+        // }, 100);
+        setTimeout(() => {
             isEnd = true;
             clearInterval(TIMEID);
             BANNERIMG();
